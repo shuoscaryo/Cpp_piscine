@@ -1,0 +1,20 @@
+#ignore everything
+*
+
+#dont ignore directories
+!*/
+
+#ignore all files in directories
+**/*
+
+#dont ignore directories in directories
+!**/*/
+
+#dont ignore cpp hpp and makefiles inside ex[0-9][0-9] directories
+!**/ex[0-9][0-9]/*.cpp
+!**/ex[0-9][0-9]/*.hpp
+!**/ex[0-9][0-9]/Makefile
+
+#ignore all object files
+**/*.o
+*.o
