@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:47:00 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/17 22:10:16 by orudek           ###   ########.fr       */
+/*   Updated: 2023/10/18 00:03:27 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int main()
 			std::cout << "Enter ADD, SEARCH or EXIT" << std::endl;
 		}
 	}
+	system("clear");
 	return (0);
 }

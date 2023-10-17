@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:20:06 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/17 20:41:30 by orudek           ###   ########.fr       */
+/*   Updated: 2023/10/17 23:46:07 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Contact.hpp"
 #include <iomanip>
 #include <limits>
+#include <cstdlib>
 
 class PhoneBook{
 private:
