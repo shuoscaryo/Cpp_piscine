@@ -18,7 +18,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ)
 
 fclean: clean
 	@rm -f $(NAME)
