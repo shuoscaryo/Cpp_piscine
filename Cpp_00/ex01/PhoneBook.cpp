@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:04:26 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/18 00:08:43 by orudek           ###   ########.fr       */
+/*   Updated: 2023/10/18 15:52:26 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ PhoneBook::PhoneBook()
 	total = 0;
 }
 
+Contact PhoneBook::get_contact(int index) const
+{
+	return (contact[index]);
+}
+
+int PhoneBook::get_total_contacts() const
+{
+	return (total);
+}
+
 static void wait_for_key()
 {
 	std::cout << "(Press enter to continue)" << std::endl;
@@ -26,7 +36,7 @@ static void wait_for_key()
 	system("clear");
 }
 
-static void	save_str(Contact &contact, void (Contact::*func)(std::string), std::string element_name)
+void	PhoneBook::save_str(Contact &contact, void (Contact::*func)(std::string), std::string element_name)
 {
 	std::string input;
 	
@@ -39,7 +49,7 @@ static void	save_str(Contact &contact, void (Contact::*func)(std::string), std::
 	(contact.*func)(input);
 }
 
-static void	save_number(Contact &contact)
+void	PhoneBook::save_number(Contact &contact)
 {
 	int is_num;
 	std::string input;
@@ -84,34 +94,7 @@ void PhoneBook::add_contact()
 	system("clear");
 }
 
-static void print_phonebook(const Contact contact[], int total)
-{
-    std::cout << "|" << std::setw(10) << std::right << "index" << "|";
-    std::cout << std::setw(10) << std::right << "first name" << "|";
-    std::cout << std::setw(10) << std::right << "last name" << "|";
-    std::cout << std::setw(10) << std::right << "nickname" << "|" << std::endl;
-    for (int i = 0; i < total; i++)
-    {
-        std::cout << "|" << std::setw(10) << i + 1 << "|";
-        std::cout <<  std::setw(10) << (contact[i].get_first_name().length() > 10 ? contact[i].get_first_name().substr(0, 9) + "." : contact[i].get_first_name()) << "|";
-        std::cout <<  std::setw(10) << (contact[i].get_last_name().length() > 10 ? contact[i].get_last_name().substr(0, 9) + "." : contact[i].get_last_name()) << "|";
-        std::cout <<  std::setw(10) << (contact[i].get_nickname().length() > 10 ? contact[i].get_nickname().substr(0, 9) + "." : contact[i].get_nickname()) << "|";
-        std::cout << std::endl;
-    }
-}
-
-static void	print_contact(const Contact &contact, int index)
-{
-	system("clear");
-	std::cout << "Displaying Contact" << index << std::endl;
-	std::cout << std::setw(10) << "First name: " << contact.get_first_name() << std::endl;
-	std::cout << std::setw(10) << "Last name: " << contact.get_last_name() << std::endl;
-	std::cout << std::setw(10) << "Nickname: " << contact.get_nickname() << std::endl;
-	std::cout << std::setw(10) << "Phone number: " << contact.get_phone_number() << std::endl;
-	std::cout << std::setw(10) << "Darkest secret: " << contact.get_darkest_secret() << std::endl;
-}
-
-static int	get_index(int total)
+int	PhoneBook::get_index(int total) const
 {
 	int i;
 	do{
@@ -135,7 +118,7 @@ void PhoneBook::search_contact() const
 {
 	system("clear");
 	std::cout << "SEARCH Contact" << std::endl;
-	print_phonebook(contact, total);
+	std::cout << *this;
 	std::cout << std::endl;
 	if (total == 0)
 	{
@@ -144,6 +127,26 @@ void PhoneBook::search_contact() const
 		return ;
 	}
 	int i = get_index(total);
-	print_contact(contact[i - 1], i);
+	system("clear");
+	std::cout << "Displaying Contact " << index << std::endl;
+	std::cout << contact[i - 1];
 	wait_for_key();
+}
+
+std::ostream& operator<<(std::ostream& os, const PhoneBook& pb)
+{
+    os << "|" << std::setw(10) << std::right << "index" << "|";
+    os << std::setw(10) << std::right << "first name" << "|";
+    os << std::setw(10) << std::right << "last name" << "|";
+    os << std::setw(10) << std::right << "nickname" << "|" << std::endl;
+    for (int i = 0; i < pb.get_total_contacts(); i++)
+    {
+		Contact contact = pb.get_contact(i);
+        os << "|" << std::setw(10) << i + 1 << "|";
+        os <<  std::setw(10) << (contact.get_first_name().length() > 10 ? contact.get_first_name().substr(0, 9) + "." : contact.get_first_name()) << "|";
+        os <<  std::setw(10) << (contact.get_last_name().length() > 10 ? contact.get_last_name().substr(0, 9) + "." : contact.get_last_name()) << "|";
+        os <<  std::setw(10) << (contact.get_nickname().length() > 10 ? contact.get_nickname().substr(0, 9) + "." : contact.get_nickname()) << "|";
+        os << std::endl;
+    }
+	return (os);
 }

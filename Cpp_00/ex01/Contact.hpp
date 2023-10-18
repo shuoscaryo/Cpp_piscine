@@ -6,12 +6,13 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:52:27 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/17 16:26:41 by orudek           ###   ########.fr       */
+/*   Updated: 2023/10/18 15:34:47 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
+#include <iomanip>
 
 class Contact{
 private:
@@ -32,3 +33,5 @@ public:
 	std::string get_phone_number() const;
 	std::string get_darkest_secret() const;
 };
+
+std::ostream& operator<<(std::ostream& os, const Contact& contact);
