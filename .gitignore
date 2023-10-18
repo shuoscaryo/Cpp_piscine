@@ -14,6 +14,8 @@
 !**/ex[0-9][0-9]/*.cpp
 !**/ex[0-9][0-9]/*.hpp
 !**/ex[0-9][0-9]/Makefile
+!subject.pdf
+!**/subject.pdf
 
 #ignore all object files
 **/*.o
