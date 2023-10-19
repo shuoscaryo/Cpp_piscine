@@ -1,9 +1,10 @@
-NAME := #NAME
+NAME := Harl
 
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
-SRC := main.cpp
+SRC := Harl.cpp\
+	main.cpp
 
 OBJ := $(SRC:.cpp=.o)
 

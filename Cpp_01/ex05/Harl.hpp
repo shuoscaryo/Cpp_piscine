@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 22:17:58 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/19 22:18:51 by orudek           ###   ########.fr       */
+/*   Created: 2023/10/19 22:13:26 by orudek            #+#    #+#             */
+/*   Updated: 2023/10/19 22:13:28 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#pragma once
+#include <iostream>
 
-int main()
+class Harl
 {
-	Harl harl;
-	harl.complain("DEBUG");
-	harl.complain("INFO");
-	harl.complain("WARNING");
-	harl.complain("ERROR");
-}
+private:
+	void debug(void);
+	void info(void);
+	void warning(void);
+	void error(void);
+public:
+	Harl();
+	~Harl();
+	void complain(std::string level);
+};
