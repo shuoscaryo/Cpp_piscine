@@ -6,12 +6,18 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 21:22:29 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/19 00:12:18 by orudek           ###   ########.fr       */
+/*   Updated: 2023/10/19 17:48:55 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
+#include <iomanip>
+
+int	Account::_nbAccounts = 0;
+int	Account::_totalAmount = 0;
+int	Account::_totalNbDeposits = 0;
+int	Account::_totalNbWithdrawals = 0;
 
 Account::Account()
 {
@@ -64,6 +70,7 @@ int Account::getNbWithdrawals()
 
 void Account::displayAccountsInfos()
 {
+	_displayTimestamp();
 	std::cout << "accounts:" << _nbAccounts << ";total:" << _totalAmount << ";deposits:" << _totalNbDeposits << ";withdrawals:" << _totalNbWithdrawals << std::endl;
 }
 
@@ -73,6 +80,7 @@ void Account::makeDeposit(int deposit)
 	_totalNbDeposits ++;
 	_totalAmount += deposit;
 	_amount += deposit;
+	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount - deposit << ";deposit:" << deposit << ";amount:" << _amount << ";nb_deposits:" << _nbDeposits << std::endl;
 }
 
@@ -88,6 +96,7 @@ bool Account::makeWithdrawal(int withdrawal)
 	_totalAmount -= withdrawal;
 	_nbWithdrawals ++;
 	_amount -= withdrawal;
+	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount + withdrawal << ";withdrawal:" << withdrawal << ";amount:" << _amount << ";nb_withdrawals:" << _nbWithdrawals << std::endl;
 	return true;
 }
@@ -104,6 +113,18 @@ void Account::displayStatus() const
 }
 
 void Account::_displayTimestamp() {
+	static time_t rawtime = time(NULL);
+	static struct tm * ptm = localtime(&rawtime);
+	std::cout << "[";
+	std::cout << 1900 + ptm->tm_year;
+	std::cout << std::setw(2) << std::setfill('0') << ptm->tm_mon + 1;
+	std::cout << std::setw(2) << std::setfill('0') << ptm->tm_mday;
+	std::cout << "_";
+	std::cout << std::setw(2) << std::setfill('0') << ptm->tm_hour;
+	std::cout << std::setw(2) << std::setfill('0') << ptm->tm_min;
+	std::cout << std::setw(2) << std::setfill('0') << ptm->tm_sec;
+	std::cout << "] ";
+
  /*   auto now = std::chrono::system_clock::now();
     std::time_t time = std::chrono::system_clock::to_time_t(now);
     char buffer[80];
