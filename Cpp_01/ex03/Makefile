@@ -1,9 +1,12 @@
-NAME := #NAME
+NAME := violence
 
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
-SRC := main.cpp
+SRC := Weapon.cpp\
+	main.cpp\
+	HumanB.cpp\
+	HumanA.cpp
 
 OBJ := $(SRC:.cpp=.o)
 

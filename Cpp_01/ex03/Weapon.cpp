@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 18:56:48 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/21 19:34:03 by orudek           ###   ########.fr       */
+/*   Created: 2023/10/21 18:43:57 by orudek            #+#    #+#             */
+/*   Updated: 2023/10/21 19:27:15 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
 #include "Weapon.hpp"
 
-int main()
+Weapon::Weapon(std::string type)
 {
-	{
-		Weapon club = Weapon("crude spiked club");
+	this->setType(type);
+}
 
-		HumanA bob("bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
-	}
-	{
-		Weapon club = Weapon("crude spiked club");
+const std::string& Weapon::getType() const
+{
+	return (type);
+}
 
-		HumanB jim("Jim");
-		jim.attack();
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
-	}
-	return 0;
+void Weapon::setType(std::string type)
+{
+	this->type = type;
+}
+
+std::ostream& operator<<(std::ostream& os, const Weapon& weapon)
+{
+	os << weapon.getType();
+	return (os);
 }
