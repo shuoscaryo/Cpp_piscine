@@ -1,9 +1,10 @@
-NAME := #NAME
+NAME := fixed
 
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=leak
 
-SRC := main.cpp
+SRC := Fixed.cpp\
+	main.cpp
 
 OBJ := $(SRC:.cpp=.o)
 
