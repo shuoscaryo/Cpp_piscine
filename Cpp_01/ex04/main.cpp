@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:04:59 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/21 18:06:07 by orudek           ###   ########.fr       */
+/*   Updated: 2023/10/30 13:50:28 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 void replace_str(std::string &buffer, std::string word, std::string replacement)
 {
-	//try catch puede
 	size_t pos;
 	size_t offset = 0;
 	size_t word_len = word.length();
@@ -52,6 +51,7 @@ int main(int argc, char **argv)
 	if (!os.is_open())
 	{
 		std::cout << "Couldn't open output file \"" << argv[1] << ".replace\"" << std::endl;
+		is.close();
 		return (1);
 	}
 	while(std::getline(is, buffer))
@@ -59,5 +59,7 @@ int main(int argc, char **argv)
 		replace_str(buffer, argv[2], argv[3]);
 		os << buffer << std::endl;
 	}
+	is.close();
+	os.close();
 	return 0;
 }
