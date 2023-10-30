@@ -1,9 +1,11 @@
-NAME := #NAME
+NAME := scavtrap
 
 CC := c++
-CFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=leak
+CFLAGS := -Wall -Wextra -Werror -std=c++98
 
-SRC := main.cpp
+SRC := ClapTrap.cpp\
+	ScavTrap.cpp\
+	main.cpp
 
 OBJ := $(SRC:.cpp=.o)
 

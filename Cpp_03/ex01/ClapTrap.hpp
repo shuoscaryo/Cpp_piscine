@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:42:52 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/30 19:08:15 by orudek           ###   ########.fr       */
+/*   Updated: 2023/10/30 19:08:00 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class ClapTrap
 		void beRepaired(unsigned int amount);
 		void printEnergyPoints(void) const;
 		void printHitPoints(void) const;
-	private:
+	protected:
 		std::string _name;
 		unsigned int _hitPoints;
 		unsigned int _energyPoints;
