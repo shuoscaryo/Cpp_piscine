@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 19:42:00 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/19 19:45:41 by orudek           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:12:17 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int main()
 {
 	Zombie *zombie = newZombie("Zombie");
 	zombie->announce();
-	delete zombie;
 	randomChump("Chump");
+	zombie->announce();
+	delete zombie;
 	return (0);
 }
