@@ -1,9 +1,13 @@
-NAME := #NAME
+NAME := abstract
 
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
-SRC := main.cpp
+SRC := Cat.cpp\
+	Brain.cpp\
+	Animal.cpp\
+	Dog.cpp\
+	main.cpp
 
 OBJ := $(SRC:.cpp=.o)
 
