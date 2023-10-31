@@ -1,12 +1,11 @@
-NAME := animal
+NAME := brain
 
 CC := c++
-CFLAGS := -Wall -Wextra -Werror -std=c++98
+CFLAGS := -Wall -Wextra -Werror -std=c++98 #-fsanitize=leak
 
 SRC := Cat.cpp\
+	Brain.cpp\
 	Animal.cpp\
-	WrongAnimal.cpp\
-	WrongCat.cpp\
 	Dog.cpp\
 	main.cpp
 
