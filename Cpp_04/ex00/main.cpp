@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:39:09 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/31 14:57:53 by orudek           ###   ########.fr       */
+/*   Updated: 2023/10/31 15:23:31 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,18 @@
 int main()
 {
 	{
-		const Animal* animal= new Animal();
-		const Animal* dog = new Dog();
-		const Animal* cat = new Cat();
+		const Animal* meta = new Animal();
+		const Animal* j = new Dog();
+		const Animal* i = new Cat();
 		
-		std::cout << std::endl;
-		std::cout << "Animal sound: ";
-		animal->makeSound();
-		std::cout << "Dog sound: ";
-		dog->makeSound();
-		std::cout << "Cat sound: ";
-		cat->makeSound();
-		std::cout << std::endl;
-		delete animal;
-		delete dog;
-		delete cat;
+		std::cout << j->getType() << " " << std::endl;
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound();
+		j->makeSound();
+		meta->makeSound();
+		delete j;
+		delete i;
+		delete meta;
 		std::cout << std::endl;
 	}
 	{
@@ -44,6 +41,10 @@ int main()
 		const WrongAnimal* cat = new WrongCat();
 		
 		std::cout << std::endl;
+		std::cout << "WrongAnimal type: " << animal->getType() << std::endl;
+		std::cout << "WrongCat type: " << cat->getType() << std::endl;
+		std::cout << std::endl;
+
 		std::cout << "WrongAnimal sound: ";
 		animal->makeSound();
 		std::cout << "WrongCat sound: ";

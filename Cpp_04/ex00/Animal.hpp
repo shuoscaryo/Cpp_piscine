@@ -8,6 +8,7 @@ class Animal
 		Animal(const Animal & src);
 		virtual ~Animal(void);
 		virtual void makeSound(void) const;
+		virtual const std::string& getType(void) const;
 		Animal & operator=(const Animal & rhs);
 	protected:
 		std::string type;
