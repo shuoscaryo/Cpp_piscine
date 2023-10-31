@@ -3,11 +3,11 @@
 DiamondTrap::DiamondTrap(std::string const &name) :
 	ClapTrap(name + "_clap_name"), ScavTrap(name + "_clap_name"), FragTrap(name + "_clap_name")
 {
-	std::cout << "DiamondTrap " << _name << " is born!" << std::endl;
 	this->_name = name;
 	this->_hitPoints = FragTrap::_hitPoints;
 	this->_energyPoints = ScavTrap::_energyPoints;
 	this->_attackDamage = FragTrap::_attackDamage;
+	std::cout << "DiamondTrap " << _name << " is born!" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap & src) :
@@ -39,4 +39,9 @@ void DiamondTrap::whoAmI(void) const
 {
 	std::cout << "DiamondTrap name: " << this->_name << std::endl;
 	std::cout << "ClapTrap name: " << this->ClapTrap::_name << std::endl;
+}
+
+void DiamondTrap::attack(const std::string& target)
+{
+	ScavTrap::attack(target);
 }
