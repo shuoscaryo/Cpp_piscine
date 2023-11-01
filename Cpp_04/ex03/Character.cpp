@@ -41,6 +41,14 @@ void Character::equip(AMateria* m)
 {
 	for ( int i = 0; i < 4; i++ )
 	{
+		if (_inventory[i] == m)
+		{
+			std::cout << "Cannot equip materia (already equipped)" << std::endl;
+			return ;
+		}
+	}
+	for ( int i = 0; i < 4; i++ )
+	{
 		if (!_inventory[i])
 		{
 			_inventory[i] = m;

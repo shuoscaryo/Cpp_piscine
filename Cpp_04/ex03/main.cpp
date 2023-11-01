@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:36:19 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/01 14:17:23 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/01 14:18:47 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int main()
 	std::cout << "Trying to use ice on you" << std::endl;
 	you->use(0, *you);
 	std::cout << "Trying to equip ice twice on you" << std::endl;
+	you->equip(ice);
+	you->equip(ice);
 	delete you;
 	delete ice;
 	return 0;
