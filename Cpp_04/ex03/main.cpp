@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:36:19 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/01 14:18:47 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/01 19:06:35 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ int main()
 	src2.learnMateria(new Ice());
 	src2.learnMateria(new Ice());
 	std::cout << "Trying to learn cure as 5th element" << std::endl;
-	src2.learnMateria(new Cure());
+	AMateria *cure = new Cure();
+	src2.learnMateria(cure);
+	delete cure;
 	std::cout << "Creating a Character called you" << std::endl;
 	ICharacter *you = new Character("you");
 	std::cout << "Creating an Ice materia item" << std::endl;
@@ -58,7 +60,7 @@ int main()
 	std::cout << "Trying to equip ice twice on you" << std::endl;
 	you->equip(ice);
 	you->equip(ice);
+	std::cout << "Deleting you. (ice will be destroyed too)" << std::endl;
 	delete you;
-	delete ice;
 	return 0;
 }
