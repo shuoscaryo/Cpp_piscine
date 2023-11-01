@@ -1,9 +1,14 @@
-NAME := #NAME
+NAME := interface
 
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
-SRC := main.cpp
+SRC := MateriaSource.cpp\
+	Ice.cpp\
+	Cure.cpp\
+	Character.cpp\
+	AMateria.cpp\
+	main.cpp
 
 OBJ := $(SRC:.cpp=.o)
 
