@@ -36,6 +36,11 @@ MateriaSource & MateriaSource::operator=(const MateriaSource & rhs)
 
 void MateriaSource::learnMateria(AMateria* m)
 {
+	if (!m)
+	{
+		std::cout << "Cannot learn materia (NULL)" << std::endl;
+		return ;
+	}
 	for ( int i = 0; i < 4; i++ )
 	{
 		if (!_inventory[i])

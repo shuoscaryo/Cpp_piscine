@@ -39,6 +39,11 @@ Character & Character::operator=(const Character & rhs)
 
 void Character::equip(AMateria* m)
 {
+	if (!m)
+	{
+		std::cout << "Cannot learn materia (NULL)" << std::endl;
+		return ;
+	}
 	for ( int i = 0; i < 4; i++ )
 	{
 		if (_inventory[i] == m)
