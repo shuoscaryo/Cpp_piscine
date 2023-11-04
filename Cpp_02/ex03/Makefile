@@ -1,7 +1,7 @@
 NAME := bsp
 
 CC := c++
-CFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=leak
+CFLAGS := -Wall -Wextra -Werror -std=c++98
 
 SRC := Fixed.cpp\
 	Point.cpp\

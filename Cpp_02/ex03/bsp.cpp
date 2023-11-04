@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 23:07:45 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/29 00:20:52 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/04 18:19:52 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 	std ::cout << "A: " << A << std::endl;
 	std ::cout << "A1 + A2 + A3 - A: " << A1 + A2 + A3 - A << std::endl;
 	std::cout << "error percentage: " << (A1 + A2 + A3- A) * 100 / A << std::endl; */
-	Fixed ok_error(3);
+	Fixed ok_error(3); //admisible error for calculation in percentage
 	return ( (A1 + A2 + A3 - A) * 100 < ok_error);
 }
