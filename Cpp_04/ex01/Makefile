@@ -1,9 +1,13 @@
-NAME := #NAME
+NAME := brain
 
 CC := c++
-CFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=leak
+CFLAGS := -Wall -Wextra -Werror -std=c++98 #-fsanitize=leak
 
-SRC := main.cpp
+SRC := Cat.cpp\
+	Brain.cpp\
+	Animal.cpp\
+	Dog.cpp\
+	main.cpp
 
 OBJ := $(SRC:.cpp=.o)
 
