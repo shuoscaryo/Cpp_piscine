@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:06:01 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/30 19:16:26 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/08 14:19:29 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ int main()
 
 	fragTrap.attack("enemy");
 	fragTrap.takeDamage(30);
-	fragTrap.printEnergyPoints();
-	fragTrap.printHitPoints();
 	fragTrap.beRepaired(20);
-	fragTrap.printEnergyPoints();
-	fragTrap.printHitPoints();
 	fragTrap.highFivesGuys();
 	return (0);
 }

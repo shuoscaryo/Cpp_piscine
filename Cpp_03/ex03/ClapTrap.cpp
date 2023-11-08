@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 23:42:49 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/30 19:07:50 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/08 14:20:56 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,4 @@ void ClapTrap::beRepaired(unsigned int amount)
 		_hitPoints += amount;
 		_energyPoints--;
 	}
-}
-
-void ClapTrap::printEnergyPoints(void) const
-{
-	std::cout << "ClapTrap " << _name << " has " << _energyPoints << " energy points left!" << std::endl;
-}
-
-void ClapTrap::printHitPoints(void) const
-{
-	std::cout << "ClapTrap " << _name << " has " << _hitPoints << " hit points left!" << std::endl;
 }
