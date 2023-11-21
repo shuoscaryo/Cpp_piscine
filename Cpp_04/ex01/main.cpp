@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:13:24 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/31 17:08:52 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/21 10:14:13 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ int main()
 	dog->printIdeas();
 
 	Dog* dog2 = new Dog(*dog);
-	dog2->printIdeas();
 	delete dog;
+	dog2->printIdeas();
 	delete dog2;
-	//system("leaks brain");
 	return (0);
 }

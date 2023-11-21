@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:13:24 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/31 20:22:33 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/21 10:24:32 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int main()
 {
-	const Animal* animals[10];
+	Animal* animals[10];
 	for (int i = 0; i < 5; i ++)
 		animals[i] = new Dog();
 	for (int i = 5; i < 10; i ++)
