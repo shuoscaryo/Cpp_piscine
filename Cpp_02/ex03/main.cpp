@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 20:19:09 by orudek            #+#    #+#             */
-/*   Updated: 2023/10/28 23:40:18 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/04 18:15:07 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int main()
 	Point b = ask_for_point("triangle second point");
 	Point c = ask_for_point("triangle third point");
 	Point point = ask_for_point("point to check");
-	
+
 	if (bsp(a, b, c, point))
 		std::cout << "The point is inside the triangle." << std::endl;
 	else

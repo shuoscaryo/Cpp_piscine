@@ -21,8 +21,10 @@ Point & Point::operator=(const Point & rhs)
 {
 	if (this != &rhs)
 	{
-		this->x = rhs.x;
-		this->y = rhs.y;
+		Fixed *x_pointer = const_cast<Fixed *>(&this->x);
+		Fixed *y_pointer = const_cast<Fixed *>(&this->y);
+		*x_pointer = rhs.x;
+		*y_pointer = rhs.y;
 	}
 	return (*this);
 }

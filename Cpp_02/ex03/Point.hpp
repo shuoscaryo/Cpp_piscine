@@ -12,6 +12,6 @@ class Point
 		Fixed getX() const;
 		Fixed getY() const;
 	private:
-		Fixed x;
-		Fixed y;
+		Fixed const x;
+		Fixed const y;
 };
