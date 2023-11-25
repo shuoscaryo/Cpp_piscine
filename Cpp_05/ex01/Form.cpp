@@ -3,14 +3,10 @@
 Form::Form(const std::string &name, int signGrade, int execGrade):
 	_name(name), _isSigned(false), _signGrade(signGrade), _execGrade(execGrade)
 {
-	if (_signGrade < 1 && _execGrade < 1)
-		throw GradeTooHighException("signGrade and execGrade too high");
-	else if (_signGrade < 1)
+	if (_signGrade < 1)
 		throw GradeTooHighException("signGrade too high");
 	else if (_execGrade < 1)
 		throw GradeTooHighException("execGrade too high");
-	if (_signGrade > 150 && _execGrade > 150)
-		throw GradeTooLowException("signGrade and execGrade too low");
 	else if (_signGrade > 150)
 		throw GradeTooLowException("signGrade too low");
 	else if (_execGrade > 150)
@@ -102,4 +98,9 @@ Form::GradeTooLowException::~GradeTooLowException() throw()
 const char *Form::GradeTooLowException::what() const throw()
 {
 	return (_msg.c_str());
+}
+
+const char *Form::AlreadySigned::what() const throw()
+{
+	return ("Form::AlreadySigned: form is already signed");	
 }
