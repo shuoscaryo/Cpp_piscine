@@ -1,9 +1,15 @@
-NAME := #NAME
+NAME := intern
 
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
-SRC := main.cpp
+SRC := main.cpp\
+	AForm.cpp\
+	Bureaucrat.cpp\
+	ShrubberyCreationForm.cpp\
+	RobotomyRequestForm.cpp\
+	Intern.cpp\
+	PresidentialPardonForm.cpp
 
 OBJ := $(SRC:.cpp=.o)
 
