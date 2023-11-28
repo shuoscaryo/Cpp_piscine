@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "AForm.hpp"
+#include "Bureaucrat.hpp"
 
 class PresidentialPardonForm : public AForm
 {
@@ -10,7 +11,7 @@ class PresidentialPardonForm : public AForm
 		~PresidentialPardonForm(void);
 		PresidentialPardonForm & operator=(const AForm &rhs);
 
-		void beSigned(const Bureaucrat &bur);
+		void execute(Bureaucrat const & executor) const;
 	protected:
 	private:
 };

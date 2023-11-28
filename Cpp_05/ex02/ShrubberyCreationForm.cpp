@@ -1,28 +1,43 @@
 #include "ShrubberyCreationForm.hpp"
+#include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm(void)
-{
-}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target):
+	AForm(target, 145, 137)
+{}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm & src)
-{
-	*this = src;
-}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm & src):
+	AForm(src)
+{}
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void)
-{
-}
+{}
 
-ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &rhs)
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(const AForm &rhs)
 {
 	if (this != &rhs)
 	{
-		// copy
+		AForm::operator=(rhs);
 	}
 	return (*this);
 }
 
-std::ostream &operator<<(std::ostream &os, const ShrubberyCreationForm &obj)
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	return (os);
+	AForm::execute(executor);
+	std::ofstream file((getName() + std::string("_shrubbery")).c_str(),std::ios::out);
+	if (!file.is_open())
+		throw ShrubberyCreationForm::FileError();
+    file << "       ^\n";
+    file << "      / \\\n";
+    file << "     /   \\\n";
+    file << "    /     \\\n";
+    file << "   /       \\\n";
+    file << "  /         \\\n";
+    file << " /___________\\\n";
+    file << "      | |" << std::endl;
+}
+
+const char *ShrubberyCreationForm::FileError::what() const throw()
+{
+	return ("Couldn't open file");
 }

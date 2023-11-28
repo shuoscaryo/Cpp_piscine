@@ -1,28 +1,31 @@
 #include "RobotomyRequestForm.hpp"
+#include <cstdlib>
 
-RobotomyRequestForm::RobotomyRequestForm(void)
-{
-}
+RobotomyRequestForm::RobotomyRequestForm(const std::string &target):
+	AForm(target, 72, 45)
+{}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm & src)
-{
-	*this = src;
-}
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm & src):
+	AForm(src)
+{}
 
 RobotomyRequestForm::~RobotomyRequestForm(void)
-{
-}
+{}
 
-RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &rhs)
+RobotomyRequestForm &RobotomyRequestForm::operator=(const AForm &rhs)
 {
 	if (this != &rhs)
 	{
-		// copy
+		AForm::operator=(rhs);
 	}
 	return (*this);
 }
 
-std::ostream &operator<<(std::ostream &os, const RobotomyRequestForm &obj)
+void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-	return (os);
+	AForm::execute(executor);
+	std::cout << "Zzzzzzrrrrrrrrrrrrrrr" << std::endl;
+	std::string msg[]={" has been robotomized.", " robotomy failed."};
+	srand(time(0));
+	std::cout << getName() << msg[rand() % 2] << std::endl;
 }

@@ -1,28 +1,27 @@
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &name):
-	AForm(name, 145, 137)
+	AForm(name, 25, 5)
 {}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm & src)
-{
-	*this = src;
-}
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm & src):
+	AForm(src)
+{}
 
 PresidentialPardonForm::~PresidentialPardonForm(void)
-{
-}
+{}
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const AForm &rhs)
 {
 	if (this != &rhs)
 	{
-		// copy
+		AForm::operator=(rhs);
 	}
 	return (*this);
 }
 
-std::ostream &operator<<(std::ostream &os, const PresidentialPardonForm &obj)
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	return (os);
+	AForm::execute(executor);
+	std::cout << getName() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

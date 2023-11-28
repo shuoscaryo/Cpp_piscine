@@ -4,7 +4,7 @@
 #define BRC_HIGHEST_RANK 1
 #define BRC_LOWEST_RANK 150
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {

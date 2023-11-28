@@ -11,7 +11,6 @@ AForm::AForm(const std::string &name, int signGrade, int execGrade):
 		throw GradeTooLowException("signGrade too low");
 	else if (_execGrade > 150)
 		throw GradeTooLowException("execGrade too low");
-
 }
 
 AForm::AForm(const AForm & src):
@@ -84,8 +83,9 @@ std::ostream &operator<<(std::ostream &os, const AForm &obj)
 	return (os);
 }
 
+//GRADE TOO HIGH
 AForm::GradeTooHighException::GradeTooHighException(std::string msg) throw():
-	_msg(std::string("AForm::GradeTooHighException: ") + msg)
+	_msg(msg)
 {}
 
 AForm::GradeTooHighException::~GradeTooHighException() throw()
@@ -96,8 +96,9 @@ const char *AForm::GradeTooHighException::what() const throw()
 	return (_msg.c_str());
 }
 
+//GRADE TOO LOW
 AForm::GradeTooLowException::GradeTooLowException(std::string msg) throw():
-	_msg(std::string("AForm::GradeTooLowException: ") + msg)
+	_msg(msg)
 {}
 
 AForm::GradeTooLowException::~GradeTooLowException() throw()
@@ -108,12 +109,28 @@ const char *AForm::GradeTooLowException::what() const throw()
 	return (_msg.c_str());
 }
 
-const char *AForm::AlreadySigned::what() const throw()
-{
-	return ("AForm::AlreadySigned: Form is already signed");
-}
+//ALREADY SIGNED
+AForm::AlreadySigned::AlreadySigned(std::string msg) throw():
+	_msg(msg)
+{}
+
+AForm::AlreadySigned::~AlreadySigned() throw()
+{}
 
 const char *AForm::AlreadySigned::what() const throw()
 {
-	return ("AForm::NotSigned: Form has not been signed");
+	return (_msg.c_str());
+}
+
+//NOT SIGNED
+AForm::NotSigned::NotSigned(std::string msg) throw():
+	_msg(msg)
+{}
+
+AForm::NotSigned::~NotSigned() throw()
+{}
+
+const char *AForm::NotSigned::what() const throw()
+{
+	return (_msg.c_str());
 }
