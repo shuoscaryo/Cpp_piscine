@@ -54,5 +54,3 @@ class AForm
 		const int _signGrade;
 		const int _execGrade;
 };
-
-std::ostream &operator<<(std::ostream &os, const AForm &obj);
