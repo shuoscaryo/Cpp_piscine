@@ -175,6 +175,7 @@ void printInt(const std::string &str)
 	else if (isascii(a))
 		std::cout << "char: Non displayable" << std::endl;
 	else
+		std::cout << "char: impossible" << std::endl;
 	std::cout << "int: " << a << std::endl;
 	std::cout << "float: " << static_cast<float>(a) << "f" << std::endl;
 	std::cout << "double: " << static_cast<double>(a) << std::endl;
@@ -182,7 +183,7 @@ void printInt(const std::string &str)
 
 void printFloat(const std::string &str)
 {
-	float a = std::atof(str.c_str());
+	float a = static_cast<float>(std::atof(str.c_str()));
 	bool overflow = intOverflow(static_cast<long long int>(a));
 	int b = static_cast<int>(a);
 	if(overflow || std::isnan(a) || std::isinf(a) || !isascii(b))
