@@ -63,19 +63,16 @@ bool intOverflow(long long int num)
 bool isInt(const std::string &str)
 {
 	size_t len = str.length();
-	size_t i = 0;
 	long long int val = 0;
 	bool isNegative = false;
 
 	if (len == (str[0] == '-' || str[0] == '+'))
 		return false;
-	if (str[0] == '-' || str[0] == '+')
-	{
-		if (str[0] == '-')
+	if (str[0] != '-' && str[0] != '+' && !std::isdigit(str[0]))
+		return false;
+	if (str[0] == '-')
 			isNegative = true;
-		i++;
-	}
-	for (i = i; i < len; i++)
+	for (size_t i = str[0] == '-' || str[0] == '+'; i < len; i++)
 	{
 		val = val * 10 + str[i] - '0';
 		if (intOverflow(val * (-1 * (isNegative) + !isNegative)))

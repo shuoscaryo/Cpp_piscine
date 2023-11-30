@@ -20,7 +20,7 @@ class Form
 		{
 			std::string _msg;
 			public:
-				GradeTooHighException(std::string msg = "grade too high") throw();
+				GradeTooHighException(std::string msg = "grade is too high") throw();
 				~GradeTooHighException() throw();
 				const char *what() const throw();
 		};
@@ -29,7 +29,7 @@ class Form
 		{
 			std::string _msg;
 			public:
-				GradeTooLowException(std::string msg = "grade too low") throw();
+				GradeTooLowException(std::string msg = "grade is too low") throw();
 				~GradeTooLowException() throw();
 				const char *what() const throw();
 		};

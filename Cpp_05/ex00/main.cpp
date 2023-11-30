@@ -29,12 +29,20 @@ int main()
 	std::cout << "\n";
 	
 	std::cout << YELLOW << "Creating a bureaucrat of rank 1" <<  RESET << std::endl;
-	Bureaucrat topG("All Might", 1);
-	std::cout << topG << "\n\n";
-	std::cout << YELLOW << "Trying to increment grade of All might" << RESET << std::endl;
+	Bureaucrat allmight("All Might", 1);
+	std::cout << allmight << "\n\n";
+
+	std::cout << YELLOW << "Decrementing grade of All might" << RESET << std::endl;
+	allmight.decrementGrade();
+	std::cout << allmight << "\n\n";
+	std::cout << YELLOW << "Incrementing grade of All might" << RESET << std::endl;
+	allmight.incrementGrade();
+	std::cout << allmight << "\n\n";
+
+	std::cout << YELLOW << "Trying to increment grade of All might again" << RESET << std::endl;
 	try
 	{
-		topG.incrementGrade();
+		allmight.incrementGrade();
 	}
 	catch(const std::exception& e)
 	{

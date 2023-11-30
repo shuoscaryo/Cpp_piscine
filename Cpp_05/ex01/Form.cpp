@@ -77,7 +77,7 @@ std::ostream &operator<<(std::ostream &os, const Form &obj)
 }
 
 Form::GradeTooHighException::GradeTooHighException(std::string msg) throw():
-	_msg(std::string("Form::GradeTooHighException: ") + msg)
+	_msg(msg)
 {}
 
 Form::GradeTooHighException::~GradeTooHighException() throw()
@@ -89,7 +89,7 @@ const char *Form::GradeTooHighException::what() const throw()
 }
 
 Form::GradeTooLowException::GradeTooLowException(std::string msg) throw():
-	_msg(std::string("Form::GradeTooLowException: ") + msg)
+	_msg(msg)
 {}
 
 Form::GradeTooLowException::~GradeTooLowException() throw()
@@ -102,5 +102,5 @@ const char *Form::GradeTooLowException::what() const throw()
 
 const char *Form::AlreadySigned::what() const throw()
 {
-	return ("Form::AlreadySigned: form is already signed");	
+	return ("form is already signed");	
 }
