@@ -1,4 +1,4 @@
-NAME := #NAME
+NAME := template_class
 
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98
