@@ -1,11 +1,16 @@
-NAME := #NAME
+NAME := Span
 
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
-SRC := main.cpp
+SRC := Span.cpp\
+	main.cpp
 
 OBJ := $(SRC:.cpp=.o)
+
+ifeq ($(NAME),)
+	NAME := a.out
+endif
 
 all: $(NAME)
 
