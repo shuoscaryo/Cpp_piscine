@@ -7,6 +7,10 @@ SRC := main.cpp
 
 OBJ := $(SRC:.cpp=.o)
 
+ifeq ($(NAME),)
+	NAME := a.out
+endif
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
