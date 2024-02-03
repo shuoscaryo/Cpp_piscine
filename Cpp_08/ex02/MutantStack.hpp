@@ -3,15 +3,15 @@
 #include <stack>
 #include <iterator>
 
-template <typename T>
-class MutantStack : public std::stack<T> 
+template <typename T, class Ct = std::deque<T> > 
+class MutantStack : public std::stack<T, Ct >
 {
 	public:
 	// Public attributes
-		typedef typename std::deque<T>::iterator iterator;
-		typedef typename std::deque<T>::const_iterator const_iterator;
-		typedef typename std::deque<T>::reverse_iterator reverse_iterator;
-		typedef typename std::deque<T>::const_reverse_iterator const_reverse_iterator;
+		typedef typename Ct::iterator iterator;
+		typedef typename Ct::const_iterator const_iterator;
+		typedef typename Ct::reverse_iterator reverse_iterator;
+		typedef typename Ct::const_reverse_iterator const_reverse_iterator;
 
 	// Constructors and destructor
 		MutantStack(void);
@@ -40,24 +40,24 @@ class MutantStack : public std::stack<T>
 	private:
 };
 
-template <typename T>
-MutantStack<T>::MutantStack(void):
-	std::stack<T>()
+template <typename T, typename Ct>
+MutantStack<T, Ct>::MutantStack(void):
+	std::stack<T, Ct>()
 {}
 
-template <typename T>
-MutantStack<T>::MutantStack(const MutantStack<T> & src):
-	std::stack<T>(src)
+template <typename T, typename Ct>
+MutantStack<T, Ct>::MutantStack(const MutantStack<T, Ct> & src):
+	std::stack<T, Ct>(src)
 {
 	*this = src;
 }
 
-template <typename T>
-MutantStack<T>::~MutantStack()
+template <typename T, typename Ct>
+MutantStack<T, Ct>::~MutantStack()
 {}
 
-template <typename T>
-MutantStack<T> &MutantStack<T>::operator=(const MutantStack<T> &rhs)
+template <typename T, typename Ct>
+MutantStack<T, Ct> &MutantStack<T, Ct>::operator=(const MutantStack<T, Ct> &rhs)
 {
 	if (this != &rhs)
 	{
@@ -66,50 +66,50 @@ MutantStack<T> &MutantStack<T>::operator=(const MutantStack<T> &rhs)
 	return (*this);
 }
 
-template <typename T>
-typename MutantStack<T>::iterator MutantStack<T>::begin()
+template <typename T, typename Ct>
+typename MutantStack<T, Ct>::iterator MutantStack<T, Ct>::begin()
 {
 	return (std::stack<T>::c.begin());
 }
 
-template <typename T>
-typename MutantStack<T>::iterator MutantStack<T>::end()
+template <typename T, typename Ct>
+typename MutantStack<T, Ct>::iterator MutantStack<T, Ct>::end()
 {
 	return (std::stack<T>::c.end());
 }
 
-template <typename T>
-typename MutantStack<T>::reverse_iterator MutantStack<T>::rbegin()
+template <typename T, typename Ct>
+typename MutantStack<T, Ct>::reverse_iterator MutantStack<T, Ct>::rbegin()
 {
 	return (std::stack<T>::c.rbegin());
 }
 
-template <typename T>
-typename MutantStack<T>::reverse_iterator MutantStack<T>::rend()
+template <typename T, typename Ct>
+typename MutantStack<T, Ct>::reverse_iterator MutantStack<T, Ct>::rend()
 {
 	return (std::stack<T>::c.rend());
 }
 
-template <typename T>
-typename MutantStack<T>::const_iterator MutantStack<T>::begin() const
+template <typename T, typename Ct>
+typename MutantStack<T, Ct>::const_iterator MutantStack<T, Ct>::begin() const
 {
 	return (std::stack<T>::c.begin());
 }
 
-template <typename T>
-typename MutantStack<T>::const_iterator MutantStack<T>::end() const
+template <typename T, typename Ct>
+typename MutantStack<T, Ct>::const_iterator MutantStack<T, Ct>::end() const
 {
 	return (std::stack<T>::c.end());
 }
 
-template <typename T>
-typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rbegin() const
+template <typename T, typename Ct>
+typename MutantStack<T, Ct>::const_reverse_iterator MutantStack<T, Ct>::rbegin() const
 {
 	return (std::stack<T>::c.rbegin());
 }
 
-template <typename T>
-typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rend() const
+template <typename T, typename Ct>
+typename MutantStack<T, Ct>::const_reverse_iterator MutantStack<T, Ct>::rend() const
 {
 	return (std::stack<T>::c.rend());
 }
