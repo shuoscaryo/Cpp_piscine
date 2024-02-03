@@ -1,4 +1,4 @@
-NAME := #NAME
+NAME := MutantStack
 
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98

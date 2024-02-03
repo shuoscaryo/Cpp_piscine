@@ -38,7 +38,6 @@ class MutantStack : public std::stack<T>
 	
 	protected:
 	private:
-<<<<<<< HEAD
 };
 
 template <typename T>
@@ -114,7 +113,3 @@ typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rend() const
 {
 	return (std::stack<T>::c.rend());
 }
-=======
-
-};
->>>>>>> 3c3d0019ae8e0cc82b9521a39e7567095f043749
