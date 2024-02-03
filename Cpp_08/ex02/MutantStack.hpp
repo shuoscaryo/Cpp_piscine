@@ -1,7 +1,9 @@
 #pragma once
 #include <iostream>
+#include <stack>
 
-class MutantStack
+template <typename T>
+class MutantStack : public stack<T> 
 {
 	public:
 	// Constructors and destructor
@@ -18,7 +20,4 @@ class MutantStack
 	protected:
 	private:
 
-	friend std::ostream &operator<<(std::ostream &os, const MutantStack &obj);
 };
-
-std::ostream &operator<<(std::ostream &os, const MutantStack &obj);

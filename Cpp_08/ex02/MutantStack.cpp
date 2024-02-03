@@ -10,8 +10,7 @@ MutantStack::MutantStack(const MutantStack & src)
 }
 
 MutantStack::~MutantStack()
-{
-}
+{}
 
 MutantStack &MutantStack::operator=(const MutantStack &rhs)
 {

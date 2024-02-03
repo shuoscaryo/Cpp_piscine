@@ -27,7 +27,4 @@ class Span
 		bool _isSorted; // Used to avoid using function isSorted()
 		size_t _listLen; // Used to avoid using method list.size()
 
-	//friend std::ostream &operator<<(std::ostream &os, const Span &obj);
 };
-
-std::ostream &operator<<(std::ostream &os, const Span &obj);
