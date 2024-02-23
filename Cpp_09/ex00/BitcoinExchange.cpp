@@ -123,26 +123,28 @@ void BitcoinExchange::run(const std::string & data) const
 			continue;
 		}
 
+		double price;
 		if (_Database.count(key) == 1)
-			std::cout << key << " => " << value << " = " << num * _Database.at(key) << std::endl;
+			price = _Database.at(key);
 		else
 		{
 			std::map<std::string,double>::const_iterator it;
 			for (it = _Database.begin(); it != _Database.end() && it->first < key; ++it)
 				;
+
 			if (it == _Database.begin())
-				std::cout << key << " => " << value << " = " << num * it->second << std::endl;
+				price = it->second;
 			else if (it == _Database.end())
-				std::cout << key << " => " << value << " = " << num * _Database.rbegin()->second << std::endl;
+				price = _Database.rbegin()->second;
 			else
 			{
-				std::map<std::string,double>::const_iterator it2 = it;
-				--it2;
-				if(datetonum(it->first) - datetonum(key) > datetonum(key) - datetonum(it2->first))
+				std::map<std::string,double>::const_iterator it2 = it--;
+				if(datetonum(it2->first) - datetonum(key) <= datetonum(key) - datetonum(it->first))
 					it = it2;
-				std::cout << key << " => " << value << " = " << num * it->second << std::endl;
+				price = it->second;
 			}
 		}
+		std::cout << key << " => " << value << " = " << num * price << std::endl;
 	}
 }
 
