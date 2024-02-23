@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-
+#include <map>
 class BitcoinExchange
 {
 	public:
@@ -12,13 +12,18 @@ class BitcoinExchange
 	// Setters and getters
 		
 	// Member functions
+	
+		void readDatabase(const std::string & filename);
 
 	// Operator overloads
 		BitcoinExchange & operator=(const BitcoinExchange & rhs);
+
 	protected:
 	private:
+	// Atributes
 
-	friend std::ostream &operator<<(std::ostream &os, const BitcoinExchange &obj);
+		std::map<std::string, double> _Database;
+
+	// Private member functions
+	friend int main();
 };
-
-std::ostream &operator<<(std::ostream &os, const BitcoinExchange &obj);
