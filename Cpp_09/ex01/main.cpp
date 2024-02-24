@@ -9,7 +9,8 @@ int main(int argc, char **argv)
 		operation += std::string(" ") + argv[i];
 
 	// Calculate the operation
-	try{
+	try
+	{
 		std::cout << RPN::calculate(operation) << std::endl;
 	}
 	catch (const std::exception & e)
