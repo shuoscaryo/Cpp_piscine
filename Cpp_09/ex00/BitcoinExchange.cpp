@@ -184,20 +184,27 @@ void BitcoinExchange::readDatabase(const std::string & filename)
 
 double BitcoinExchange::getPrice(const std::string & date) const
 {
+	// Check if readDatabase was called
 	if (!_initialized)
 		throw std::runtime_error("Internal Error: database not initialized.");
 
+	// If the date is in the database return the value
 	if (_Database.count(date) == 1)
 		return _Database.at(date);
 
+	// Otherwise return the closest value
+	// Find the first element with a key not less than date
 	std::map<std::string,double>::const_iterator it;
 	for (it = _Database.begin(); it != _Database.end() && it->first < date; ++it)
 		;
 
+	// If the date is before the first element return the first element
 	if (it == _Database.begin())
 		return it->second;
+	// If the date is after the last element return the last element
 	else if (it == _Database.end())
 		return _Database.rbegin()->second;
+	// Otherwise return the closest element
 	else
 	{
 		std::map<std::string,double>::const_iterator it2 = it--;
