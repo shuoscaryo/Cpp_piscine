@@ -14,9 +14,10 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
+	BitcoinExchange btc;
 	try
 	{
-		BitcoinExchange btc("data.csv");
+		btc.readDatabase("data.csv");
 		btc.run(argv[1]);
 	}
 	catch (const std::exception &e)

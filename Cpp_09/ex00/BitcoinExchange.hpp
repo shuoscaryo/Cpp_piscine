@@ -6,7 +6,7 @@ class BitcoinExchange
 {
 	public:
 	// Constructors and destructor
-		BitcoinExchange(const std::string & database = "data.csv");
+		BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange & src);
 		~BitcoinExchange();
 
@@ -14,6 +14,7 @@ class BitcoinExchange
 		
 	// Member functions
 		void run(const std::string & data) const;
+		void readDatabase(const std::string & filename);
 
 	// Operator overloads
 		BitcoinExchange & operator=(const BitcoinExchange & rhs);
@@ -22,8 +23,11 @@ class BitcoinExchange
 	private:
 	// Atributes
 
+		bool _initialized;
 		std::map<std::string, double> _Database;
 
 	// Private member functions
-		void readDatabase(const std::string & filename);
+
+		double getPrice(const std::string & date) const;
+
 };

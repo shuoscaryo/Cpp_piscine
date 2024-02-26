@@ -49,10 +49,9 @@ static bool isDate(const std::string & str)
 	return (ptr != NULL && *ptr == '\0');
 }
 
-BitcoinExchange::BitcoinExchange(const std::string & database)
-{
-	readDatabase(database);
-}
+BitcoinExchange::BitcoinExchange():
+	_initialized(false)
+{}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange & src)
 {
@@ -67,18 +66,25 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rhs)
 	if (this != &rhs)
 	{
 		_Database = rhs._Database;
+		_initialized = rhs._initialized;
 	}
 	return (*this);
 }
 
 void BitcoinExchange::run(const std::string & data) const
 {
+	std::string line;
+
+	// Check if readDatabase was called
+	if (!_initialized)
+		throw std::runtime_error("Internal Error: database not initialized.");
+
+	// Open the file
 	std::ifstream file(data.c_str());
 	if (!file.is_open())
 		throw std::runtime_error("Error: could not open file.");
 
-	std::string line;
-	// Skip first line which contains headers
+	// Skip first linez which contains headers
 	std::getline(file, line, '\n');
 
 	// Loop through the rest of the database saving date-value pairs in "_Database" map
@@ -123,39 +129,21 @@ void BitcoinExchange::run(const std::string & data) const
 			continue;
 		}
 
-		double price;
-		if (_Database.count(key) == 1)
-			price = _Database.at(key);
-		else
-		{
-			std::map<std::string,double>::const_iterator it;
-			for (it = _Database.begin(); it != _Database.end() && it->first < key; ++it)
-				;
-
-			if (it == _Database.begin())
-				price = it->second;
-			else if (it == _Database.end())
-				price = _Database.rbegin()->second;
-			else
-			{
-				std::map<std::string,double>::const_iterator it2 = it--;
-				if(datetonum(it2->first) - datetonum(key) <= datetonum(key) - datetonum(it->first))
-					it = it2;
-				price = it->second;
-			}
-		}
-		std::cout << key << " => " << value << " = " << num * price << std::endl;
+		// Print the result
+		std::cout << key << " => " << value << " = " << num * getPrice(key) << std::endl;
 	}
 }
 
 void BitcoinExchange::readDatabase(const std::string & filename)
 {
+	std::string line;
 	std::string ERROR_DATABASE = "Error: invalid database content";
+
+	// Open the file
 	std::ifstream file(filename.c_str());
 	if (!file.is_open())
 		throw std::runtime_error(ERROR_DATABASE);
 
-	std::string line;
 	// Skip first line which contains headers
 	std::getline(file, line, '\n');
 
@@ -186,6 +174,35 @@ void BitcoinExchange::readDatabase(const std::string & filename)
 		_Database[key] = ::stod(value);
 	}
 
+	// If the database is empty throw error
 	if (_Database.empty())
 		throw std::runtime_error(ERROR_DATABASE);
+
+	// Set the initialized flag to true
+	_initialized = true;
+}
+
+double BitcoinExchange::getPrice(const std::string & date) const
+{
+	if (!_initialized)
+		throw std::runtime_error("Internal Error: database not initialized.");
+
+	if (_Database.count(date) == 1)
+		return _Database.at(date);
+
+	std::map<std::string,double>::const_iterator it;
+	for (it = _Database.begin(); it != _Database.end() && it->first < date; ++it)
+		;
+
+	if (it == _Database.begin())
+		return it->second;
+	else if (it == _Database.end())
+		return _Database.rbegin()->second;
+	else
+	{
+		std::map<std::string,double>::const_iterator it2 = it--;
+		if(datetonum(it2->first) - datetonum(date) <= datetonum(date) - datetonum(it->first))
+			it = it2;
+		return it->second;
+	}
 }
