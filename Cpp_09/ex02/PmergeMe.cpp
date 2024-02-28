@@ -68,6 +68,9 @@ std::vector<size_t> PmergeMe::sort(std::vector<size_t> v)
 	// 4. Insert pendChain into mainChain
 	// 4.1. Generate the jacobian sequence (the order in which the elements of pendChain will be inserted)
 	std::vector<size_t> jacobianSequence = generateSequence(pendChain.size());
+	for (size_t i = 0; i < jacobianSequence.size(); i++)
+		std::cout << jacobianSequence[i] << " ";
+	std::cout << std::endl;
 	// 4.2. The first element of pendChain can be added directly since main[0] > pend[0]
 	mainChain.insert(mainChain.begin(),pendChain[0]);
 	// 4.3. Insert the rest of the elements
