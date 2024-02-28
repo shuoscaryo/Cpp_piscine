@@ -25,7 +25,9 @@ void PmergeMe::insert(std::vector<size_t> &v, size_t num, size_t left, size_t ri
 	// Special cases
 	if (num < v[left])
 		return (void) v.insert(v.begin(), num);
-	if (num > v[right])
+	if (num > v[right] && right < v.size() - 1)
+		return (void) v.insert(v.begin() + right + 1, num);
+	if (num > v[right] && right == v.size() - 1)
 		return (void) v.push_back(num);
 
 	// Binary search
@@ -39,21 +41,38 @@ void PmergeMe::insert(std::vector<size_t> &v, size_t num, size_t left, size_t ri
 
 	// Insert at the right position
 	v.insert(v.begin() + right, num);
+
 }
 
 std::vector<size_t> PmergeMe::sort(std::vector<size_t> v)
 {
+	if (v.size() < 2)
+	 	return v;
+
+	std::cout << "Original: ";
+	for (size_t i = 0; i < v.size(); i++)
+		std::cout << v[i] << " ";
+	std::cout << std::endl;
 	// 1. Order the pairs (the last one is left alone if the length is odd)
 	for (size_t i = 1; i < v.size(); i += 2)
 		if (v[i - 1] < v[i])
 			std::swap(v[i - 1], v[i]);
 
+	std::cout << "Ordered: ";
+	for (size_t i = 0; i < v.size(); i++)
+		std::cout << v[i] << " ";
+	std::cout << std::endl;
+
 	// 2. Recursively sort the pairs
 	std::vector<std::pair<size_t, size_t> > pairs;
-	for (size_t i = 0; i < v.size(); i += 2)
+	for (size_t i = 0; i < (v.size() - (v.size() % 2)); i += 2)
 		pairs.push_back(std::make_pair(v[i], v[i + 1]));
 	mergeSort(pairs);
 
+	std::cout << "Pairs: ";
+	for (size_t i = 0; i < pairs.size(); i++)
+		std::cout << "(" << pairs[i].first << "," << pairs[i].second << ") ";
+	std::cout << std::endl;
 	// 3. Create main chain and pend chain
 	std::vector<size_t> mainChain;
 	std::vector<size_t> pendChain;
@@ -62,25 +81,42 @@ std::vector<size_t> PmergeMe::sort(std::vector<size_t> v)
 		mainChain.push_back(pairs[i].first);
 		pendChain.push_back(pairs[i].second);
 	}
-	if (v.size() % 2)
-		pendChain.push_back(v[v.size() - 1]);
 
+	std::cout << "Main chain: ";
+	for (size_t i = 0; i < mainChain.size(); i++)
+		std::cout << mainChain[i] << " ";
+	std::cout << std::endl;
+	std::cout << "Pend chain: ";
+	for (size_t i = 0; i < pendChain.size(); i++)
+		std::cout << pendChain[i] << " ";
+	std::cout << std::endl;
 	// 4. Insert pendChain into mainChain
 	// 4.1. Generate the jacobian sequence (the order in which the elements of pendChain will be inserted)
 	std::vector<size_t> jacobianSequence = generateSequence(pendChain.size());
+	std::cout << "Jacobian sequence: ";
 	for (size_t i = 0; i < jacobianSequence.size(); i++)
 		std::cout << jacobianSequence[i] << " ";
 	std::cout << std::endl;
 	// 4.2. The first element of pendChain can be added directly since main[0] > pend[0]
 	mainChain.insert(mainChain.begin(),pendChain[0]);
 	// 4.3. Insert the rest of the elements
-	for (size_t i = 1; i < pendChain.size(); i++)
+	size_t inserted_count = 1;
+	for (size_t i = 1; i < jacobianSequence.size(); i++)
 	{
 		size_t index = jacobianSequence[i] - 1;
 		if (index > pendChain.size() - 1)
 			continue;
-		insert(mainChain, pendChain[index], 0, i + index - 1);
+		std::cout << "Inserting " << pendChain[index] << ", " << i + index - 1<< std::endl;
+		insert(mainChain, pendChain[index], 0, inserted_count + index - 1);
+		inserted_count++;
+		std::cout << "\t";
+		for (size_t i = 0; i < mainChain.size(); i++)
+			std::cout << mainChain[i] << " ";
+		std::cout << std::endl;
 	}
+	// 4.4. If the length of the original vector was odd, insert the last element
+	if (v.size() % 2)
+		insert (mainChain, v[v.size() - 1], 0, mainChain.size() - 1);
 
 	return mainChain;
 }
