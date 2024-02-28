@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <vector>
+#include <utility>
 
 class PmergeMe
 {
@@ -13,6 +15,8 @@ class PmergeMe
 		
 	// Member functions
 
+		static std::vector<size_t> sort(std::vector<size_t> v);
+
 	// Operator overloads
 		PmergeMe & operator=(const PmergeMe & rhs);
 
@@ -21,9 +25,8 @@ class PmergeMe
 	// Atributes
 
 	// Private member functions
-
+		static void insert(std::vector<size_t> &v, size_t num, size_t left, size_t right);
+		static void mergeSort(std::vector<std::pair<size_t, size_t> > &v);
+		static std::vector<size_t> generateSequence(size_t size);
 	// Friends <3
-		friend std::ostream &operator<<(std::ostream &os, const PmergeMe &obj);
 };
-
-std::ostream &operator<<(std::ostream &os, const PmergeMe &obj);
