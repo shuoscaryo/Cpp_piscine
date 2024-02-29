@@ -3,7 +3,8 @@ NAME := PmergeMe
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
-SRC := main.cpp
+SRC := PmergeMe.cpp\
+	main.cpp
 
 OBJ := $(SRC:.cpp=.o)
 
