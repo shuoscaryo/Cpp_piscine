@@ -68,23 +68,21 @@ int main(int argc, char **argv) {
 		v.insert(v.end(), temp.begin(), temp.end());
 	}
 
-	// Sort the numbers
-	std::cout << BLACK;
-	printContainer(d, "Before");
-
+	// Sort the numbers and measure the time
 	clock_t aux = clock();
 	std::vector<size_t> sortedV = PmergeMe::sortVector(v);
 	double timeV = (clock() - aux) * 1000000.0 / CLOCKS_PER_SEC;
-
 	aux = clock();
 	std::deque<size_t> sortedD = PmergeMe::sortDeque(d);
 	double timeD = (clock() - aux) * 1000000.0 / CLOCKS_PER_SEC;
 
 	// print the sorted numbers
-	std::cout << CYAN;
+	printContainer(d, "Before");
 	printContainer(sortedD, "After");
-	std::cout << RESET;
-	std::cout << "Time to process a range of "<< v.size() << " elements with std::vector : " <<std::setprecision(5) << std::fixed <<  timeV << " us" << std::endl;
-	std::cout << "Time to process a range of "<< v.size() << " elements with std::deque :  " <<std::setprecision(5) << std::fixed <<  timeD << " us" << std::endl;
+	std::cout << "Time to process a range of "<< v.size() << " elements with std::vector : "
+		<< std::setprecision(5) << std::fixed << timeV << " us" << std::endl;
+	std::cout << "Time to process a range of "<< v.size() << " elements with std::deque :  "
+		<< std::setprecision(5) << std::fixed << timeD << " us" << std::endl;
+
 	return 0;
 }
