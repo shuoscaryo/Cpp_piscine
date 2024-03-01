@@ -22,12 +22,10 @@ class BitcoinExchange
 	protected:
 	private:
 	// Atributes
-
 		bool _initialized;
 		std::map<std::string, double> _Database;
 
 	// Private member functions
-
 		double getPrice(const std::string & date) const;
 
 };

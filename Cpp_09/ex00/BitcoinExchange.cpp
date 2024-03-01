@@ -5,18 +5,6 @@
 #include <map>
 #include <ctime>
 
-static size_t datetonum(const std::string& dateStr) {
-    // Parse the date string
-    struct tm tm;
-    strptime(dateStr.c_str(), "%Y-%m-%d", &tm);
-
-    // Convert the time structure to a time value
-    std::time_t timeValue = std::mktime(&tm);
-
-    // Convert the time value to size_t representation
-    return static_cast<size_t>(timeValue);
-}
-
 static double stod(const std::string & str)
 {
 	std::istringstream iss(str);
@@ -142,7 +130,7 @@ void BitcoinExchange::readDatabase(const std::string & filename)
 	// Open the file
 	std::ifstream file(filename.c_str());
 	if (!file.is_open())
-		throw std::runtime_error(ERROR_DATABASE);
+		throw std::runtime_error("Error: could not open database file");
 
 	// Skip first line which contains headers
 	std::getline(file, line, '\n');
@@ -201,15 +189,6 @@ double BitcoinExchange::getPrice(const std::string & date) const
 	// If the date is before the first element return the first element
 	if (it == _Database.begin())
 		return it->second;
-	// If the date is after the last element return the last element
-	else if (it == _Database.end())
-		return _Database.rbegin()->second;
-	// Otherwise return the closest element
-	else
-	{
-		std::map<std::string,double>::const_iterator it2 = it--;
-		if(datetonum(it2->first) - datetonum(date) <= datetonum(date) - datetonum(it->first))
-			it = it2;
-		return it->second;
-	}
+	// Otherwise return the closest smaller element (it.end() will return the last element)
+	return (--it)->second;
 }

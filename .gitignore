@@ -17,7 +17,7 @@
 !subject.pdf
 !**/subject.pdf
 !Cpp_09/ex00/data.csv
-!Cpp_09/ex00/input.txt
+!Cpp_09/ex00/input*
 
 #ignore all object files
 **/*.o
