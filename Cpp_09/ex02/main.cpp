@@ -45,7 +45,8 @@ void printContainer(T v, const std::string &name = "")
 		std::cout << name << ":\t";
 
 	for (size_t i = 0; i < v.size(); i++)
-		std::cout << v[i] << (i + 1 == v.size() ? "\n" : " ");
+		std::cout << v[i] << (i + 1< v.size()?" ":"");
+	std::cout << std::endl;
 }
 
 int main(int argc, char **argv) {
@@ -68,6 +69,11 @@ int main(int argc, char **argv) {
 		v.insert(v.end(), temp.begin(), temp.end());
 	}
 
+	if (d.size() == 0)
+	{
+		std::cout << "Error" << std::endl;
+		return 1;
+	}
 	// Sort the numbers and measure the time
 	clock_t aux = clock();
 	std::vector<size_t> sortedV = PmergeMe::sortVector(v);
