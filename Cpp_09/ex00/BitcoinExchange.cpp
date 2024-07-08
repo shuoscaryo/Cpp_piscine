@@ -17,7 +17,7 @@ static std::string trim(const std::string& str, const std::string & charset = " 
 {
     size_t first = str.find_first_not_of(charset);
     if (std::string::npos == first)
-        return str;
+        return std::string("");
     size_t last = str.find_last_not_of(charset);
     return str.substr(first, (last - first + 1));
 }
@@ -82,7 +82,7 @@ void BitcoinExchange::run(const std::string & data) const
 		getline(file, line, '\n');
 
 		// Skip the line if it's empty
-		if(line.empty())
+		if(trim(line).empty())
 			continue; 
 
 		// Find the position of the separator between date and value
